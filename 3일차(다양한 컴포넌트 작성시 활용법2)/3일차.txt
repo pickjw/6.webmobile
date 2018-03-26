@@ -1,0 +1,199 @@
+3일차(다양한 컴포넌트 작성시 활용법2)->테마(색깔),** 탭메뉴(필수) **
+                                     ->그리드,** jQueryMobile<->DB연동 **
+========================================================================
+발표(2~3주)->발표(진행)->다음주 2주 진행상황->4:40분 발표순서
+->모델링 툴(exerd)->설계(물리적으로 테이블생성->작업)
+=>다음주 화요일(최종) 완성본 제출->목요일(업무분장)->스토리 보드(화면설계)
+=========================================================================
+웹디자인 복습->jQueryTest->bootstrap->jQueryMobile
+                                       ch03.pageMove
+                                          04.html save as 05.html
+
+ch04-theme
+   theme.html
+                                        
+<!--  
+      data-theme="a"~"e" (다양한 색깔 부여)=>영역 또는 컴포넌트에 부여 가능
+   -->
+    <div data-role="page"> 
+     <div data-role="header" data-theme="a">
+       <h1>Bar A</h1>
+     </div>
+      <div data-role="header" data-theme="b">
+       <h1>Bar B</h1>
+     </div>
+      <div data-role="header" data-theme="c">
+       <h1>Bar C</h1>
+     </div>
+      <div data-role="header" data-theme="d">
+       <h1>Bar D</h1>
+     </div>
+      <div data-role="header" data-theme="e">
+       <h1>Bar E</h1>
+     </div>
+================================================
+ 회원관리 프로그램 디자인
+ ->회원로그인,회원가입폼,회원수정폼,회원검색폼,,,
+
+ch05-nav
+  01.html->탭메뉴
+=================
+ 설계 방법
+
+1.상단 또는 하단에 탭을 만들것을 고려(설계)->하단에 설계
+2.탭의 갯수만큼 화면디자인을 하면 된다.=>3개의 파일(3~4개)
+3.탭의 갯수만큼 화면디자인한 파일을 실행
+
+ 회원가입(a.html)  검색(b.html)  목록보기(c.html)->Footer
+
+*******************************************************************
+ <!-- 
+    각 페이지마다 Footer 네비게이션바를 작성->공통으로 사용할 수 있도록 설정
+    선택상태를 유지할 필요성-> data-id를 지정(공통), data-position="fixed"(공통)
+    디폴트 선택 버튼의 class속성값
+
+    ->  ui-btn-active속성(선택했는지 체크) 과 
+        ui-state-persist 속성(다른 탭을 선택할때까지 계속 유지할것인지 체크)
+    -->
+    <div data-role="footer" data-id="persistFooter" data-position="fixed">
+       <div data-role="navbar">
+         <ul>
+             <li><a href="a.html" data-icon="plus"
+                        class="ui-btn-active ui-state-persist" >회원가입</a></li>
+             <li><a href="b.html" data-icon="search" >회원검색</a></li>
+             <li><a href="c.html" data-icon="gear" >회원목록</a></li>
+         </ul>
+       </div>
+     </div>
+
+*********************************************************
+b.html
+
+<!-- 2.content 지정
+         1)header영역 사이에 공백을 주고 싶다.->data-inset="true"
+         2)실시간 검색->data-filter="true" ->like연산자 실행결과
+         3)주소록목록(listview항목의 구분선->data-role="list-divider"
+       -->
+    <div data-role="content">
+         <ul data-role="listview" data-inset="true" data-filter="true">
+           <li data-role="list-divider">Divider(구분선)</li><!-- 5호선 -->
+           <li><a href="#">방화</a></li><!--DB의 데이터를 출력  -->
+           <li><a href="#">개화산</a></li>
+           <li><a href="#">김포공항</a></li>
+           <li><a href="#">송정</a></li>
+           <li><a href="#">마곡</a></li>
+           <li><a href="#">발산</a></li>
+         </ul>
+     </div>
+-----------------------------------------------------------
+c.html
+
+<!--  탐색기
+       data-role="collapsible-set" ->전체 화면의 데이터부분을 보여줄 영역을 설정
+                                              ->각각의 항목은 collapsible로 설정을 한다.
+     -->
+    <div data-role="content">
+         <div data-role="collapsible-set">
+            <div data-role="collapsible"><!-- 트리구조형태로 정보를 제공 -->
+               <h1>홍길동</h1><!--화면에 보이는 부분(Question)  -->
+               <p>홍길동의 나이는 23살이며 주소는 서울시 강남구에 거주합니다.</p>
+            </div>
+            <div data-role="collapsible">
+               <h1>이길수</h1>
+               <p>이길수의 직업은 프로그래머이며 나이는 34살입니다.</p>
+            </div>
+         </div>
+     </div>
+-----------------------------------------------------------------
+grid.html
+
+Grid 정의 CSS          컬럼수           컬럼에 포함되는 항목 CSS
+  ui-grid-a                    2개                 ui-block-a,ui-block-b
+  ui-grid-b                    3개                 ui-block-a,ui-block-b,ui-block-c
+  ui-grid-c                    4개                 ui-block-a,ui-block-b,ui-block-c,ui-block-d
+  ui-grid-d                    5개                 ui-block-a,ui-block-b,ui-block-c,ui-block-d
+                                                         ui-block-e
+
+ **jQueryMobile와 DB연동방법 **
+
+1.jsp를 이용->모델1으로 구현(오라클 or MySQL)=>모바일 환경
+**2.Local DB(html5에서만 제공)->순수 자바스크립 함수를 호출 **
+==============================================================
+ ** Eclipse에서 통합적으로 DB관리 =>plugin을 설치하면 된다.
+
+ plugin->서비스팩->기존 OS->버그->수정해서 배포=>추가로 사용할 수 있는
+                                                 작은 프로그램
+
+ MyEclipse(상용)->프로그램을 개발할때 사용할 수있는 plugin이 다 설치된
+                  버전
+
+ Eclipse(무료)->plugin이 설치되지 않은 버전+필요로할때 마다 설치
+===================================================================
+
+1.다운로드(특정 사이트 접속)->압축풀기=>옛날방법->거의 사용X
+=================================================================
+***2.plugin을 설치->사이트에 접속(북마크 관리)->download->설치->
+                Eclipse 재실행
+
+  =>Help->install new software =>특정사이트를 등록->다운로드->설치
+  =>스프링->적용X
+  =>** 특정사이트 주소가 가끔 변경이 되는 경우가 있다. **
+
+***3.스프링->현재->help/Eclipse Marketplace
+              ->설치하고자하는 프로그램이름
+                검색->install하는 방법
+===================================================================
+ Quantum DB plugin을 설치하기 위한 경로 지정
+
+http://quantum.sourceforge.net/update-site
+
+=>재부팅->항목이 안나오는 경우->설치는 됐는데 제대로 인식이 안된경우
+        ->** 지우는 방법 **
+
+ 설치된 목록을 확인
+
+ help->about eclipse
+      installation Details 항목을 클릭
+
+
+ Mysql
+============================================================
+ create table phone(
+ productnum int primary key,
+ model varchar(30) not null,
+ company varchar(20) not null,
+ price int(10) not null,
+ color varchar(20) not null,
+ image varchar(100) not null);
+
+ select * from board;
+ ======================================
+oracle
+=================================
+ create table phone(
+ productnum number primary key,
+ model varchar2(30) not null,
+ company varchar2(20) not null,
+ price number(10) not null,
+ color varchar2(20) not null,
+ image varchar2(100) not null);
+
+
+ insert into phone values(1, '갤럭시s8','삼성', 190000,'blue','phone01.png');
+ insert into phone values(2, 'v30','LG', 1850000,'green','phone02.png');
+ insert into phone values(3, '아이폰10','애플', 250000,'navy','phone03.png');
+ insert into phone values(4, '갤럭시s9','삼성', 190000,'red','phone04.png');
+
+ select * from phone;
+===================================
+ ch06-db
+  phonelist.jsp(폰목록보기)->폰의 상세보기(phonedetail.jsp)
+        
+
+
+
+
+
+
+
+
